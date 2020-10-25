@@ -9,10 +9,11 @@
 
 #### 1. PRELIMINARIES ####
 library(raster)     # For working with rasters
+library(rgeos)
 library(ggplot2)    # For making figures
 library(colorRamps) # for Matlab like colour scheme
 library(RNetCDF)    # For reading/manipulating netCDFs
-library(dplyr)
+library(dplyr)      # Data manipulation in the tidyverse
 library(rnaturalearth) # install.packages(c("rnaturalearth", "rnaturalearthdata"))
 library(sf) # For simple geographic features
 
