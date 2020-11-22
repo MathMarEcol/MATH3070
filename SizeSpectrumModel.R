@@ -113,7 +113,7 @@ ggplot(data = sf, aes(fill = IntPPfuture-IntPPnow)) +
   # limits = c(-0.0002, 0.0002),
   theme_bw() +
   labs(fill = "delta IntPP") +
-  ggtitle("Change in integrated PP (2090s-2000s)")
+ ggtitle("Change in integrated PP (2090s-2000s)")
 ggsave("Output/IntPPchange.png", dpi = 150)
 
 rm(sf, IntPP_nc, SST_nc, df, SSTnow, SSTfuture, IntPPnow, IntPPfuture) # Clean up
@@ -162,7 +162,7 @@ rm(Chl, IntPP) # Clean up
 
 #### 4. CALCULATE ABUNDANCE OF PHYTOPLANKTON AT Wm ####
 # Set up variables for the model
-Alpha <- 0.125      # Trophic transfer efficiency (proportion of energy from trophic level n that reaches n+1
+Alpha <- 0.05      # Trophic transfer efficiency (proportion of energy from trophic level n that reaches n+1
                       # Default Alpha = 0.125
 Beta  <- 1000         # Predator Prey Mass Ratio (ratio of mass of predator to that of prey)
                       # Default Beta = 1000
@@ -215,7 +215,7 @@ Biom_conc <- (a/(b+1))*(Wmax^(b+1) - Wmin^(b+1))
 # Biom_conc (g/m^3) = biomass concentration
 Biom_conc <- Biom_conc/10^6 # Convert to tonnes/m^2
 
-rm(a, N_Wm, P_Wm, PP_Wm, SST) # Clean up
+#rm(a, N_Wm, P_Wm, PP_Wm, SST) # Clean up
 
 # Now we can't just sum up every grid square - why?
 # Multiply by approximate surface area of grid squares to get total biomass
@@ -232,6 +232,7 @@ Biom_year  <- apply(Biom_total, 3, sum, na.rm = TRUE) # Total global biomass in 
 # What is the total fish catch? Fish catch in tonnes
 format(mean(Biom_year[First10yrs]), scientific = TRUE)
 # Jennings et al. (2008) = 8.991 x 10^8 tonnes
+"4.446696e+07"
 
 # Plot relative change in % over 21st century
 dat <- data.frame(Years = 2015:2100,
@@ -280,4 +281,3 @@ ggplot(data = sf, aes(fill = Biom_change)) +
   labs(fill = "% change") +
   ggtitle("Fish biomass change 2090s - 2000s")
 ggsave("Output/FishBiomassChange.png", dpi = 150)
-
